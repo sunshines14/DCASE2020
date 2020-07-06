@@ -1,4 +1,4 @@
-numpy
+numpy==1.16.4
 matplotlib
 h5py
 pandas
@@ -6,3 +6,4 @@ librosa
 numba==0.43.0
 llvmlite==0.32.1
 keras==2.1.6
+tensorflow-gpu-1.13.1

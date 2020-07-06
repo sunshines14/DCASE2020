@@ -259,7 +259,7 @@ model = model_resnet(NumClasses,
                      input_shape=[NumFreqBins,None,num_feature_channels*num_audio_channels], 
                      num_filters=24,
                      wd=1e-3)
-model = multi_gpu_model(model)
+model = multi_gpu_model(model, gpus=4)
 model.compile(loss='categorical_crossentropy',
               optimizer =SGD(lr=max_lr,decay=0, momentum=0.9, nesterov=False),
               metrics=['accuracy'])
