@@ -262,7 +262,7 @@ model = model_resnet(NumClasses,
 model = multi_gpu_model(model, gpus=4)
 model.compile(loss='categorical_crossentropy',
               optimizer =SGD(lr=max_lr,decay=0, momentum=0.9, nesterov=False),
-              metrics=['acc'])
+              metrics=['accuracy'])
 
 model.summary()
 
@@ -273,7 +273,7 @@ lr_scheduler = LR_WarmRestart(nbatch=np.ceil(LM_train.shape[0]/batch_size), Tmul
                               epochs_restart=[11.0, 31.0, 71.0, 151.0, 311.0, 631.0])
 #epochs_restart=[3.0, 7.0, 15.0, 31.0, 63.0,127.0,255.0,511.0]
 
-checkpoint = ModelCheckpoint(filepath=model_path, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+checkpoint = ModelCheckpoint(filepath=model_path, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
 
 TrainDataGen = MixupGenerator(LM_train, 
                               y_train, 
